@@ -112,14 +112,14 @@ window.addEventListener('keydown', whichKeyDown,true);
 // window.addEventListener('keyup', function (e) {
 //     keys[e.keyCode] = false;
 // });
+Player1.drawTank();
+Player2.drawTank();
 });
-myImage=new Image();
-myImage.src='sprites_20.png';
+
 var drawBg=function(){
 		
-		
-		
-		
+		myImage=new Image();
+		myImage.src='sprites_20.png';
 		
 		//myImage.onload=function(){
 			for (var i = 0; i < 30; i++) {
@@ -158,10 +158,8 @@ Tank.prototype.drawTank=function(){
 	ctx.clearRect(this.oldTankX,this.oldTankY,40,40);	
 	ctx.drawImage(this.image,this.tankSX,this.tankSY,40,40,this.tankX,this.tankY,40,40);
 	drawBg();
-
-	
-	
 };
+
 Tank.prototype.left=function(){
 	this.oldTankX=this.tankX;
 	this.oldTankY=this.tankY;
@@ -249,8 +247,8 @@ Tank.prototype.up=function(){
        	}
        	// if((this.tankY==enemy1.enemyY-20) && ((this.tankX>enemy1.enemyX+20) || (this.tankX+20<enemy1.enemyX)))
        	// 	this.f=1;
-       		if((Player1.tankY==Player2.tankY-20) && ((Player1.tankX>Player2.tankX+20) || (Player1.tankX+20<Player2.tankX)))
-       		this.f=1;
+       		// if((Player1.tankY==Player2.tankY-20) && ((Player1.tankX>Player2.tankX+20) || (Player1.tankX+20<Player2.tankX)))
+       		// this.f=1;
         if(this.tankY>=2.5 && (this.l==0|| this.l==3) && (this.m==0 || this.m==3) && (this.n==0 || this.n==3) && (this.f==0) )
           this.tankY = this.tankY - 2;
 
@@ -305,6 +303,7 @@ function bullet(bulletX,bulletY,bulletSX,bulletSY,image){
 	this.bulletLoop=0;
 
 }
+
 var player1Bullet,player2Bullet;
 
 bullet.prototype.drawBulletUp=function(){
@@ -582,7 +581,6 @@ bullet.prototype.bulletUp=function(){
 
 function whichKeyDown(evt) {
 
-	
 	if(!preKeyPress)preKeyPress=38;
 	if(!preKeyPress2)preKeyPress2=87;
 
@@ -946,117 +944,117 @@ enemy.prototype.drawEnemyBulletUp=function(){
 			}
 			//break;
 			//bomb.src="bomb.png";
-		}
-	enemy.prototype.drawEnemyBulletDown=function(){
-		this.enemyBulletXX=this.enemyBulletX;
-		this.enemyBulletYY=this.enemyBulletY;
-		var a=this.enemyBulletX.mod(20);
-		var b=this.enemyBulletY.mod(20);
-		//flag=0;
-		this.enemyBulletFlag=0;
-		//case 40://down
-			ctx.clearRect(this.enemyBulletX,this.enemyBulletY,3,15);
-			this.enemyBulletY=this.enemyBulletY+3;
-			if(a!=0)this.enemyBulletXX=(this.enemyBulletXX-a)/20;else this.enemyBulletXX=this.enemyBulletXX/20;
-			if(b!=0)this.enemyBulletYY=(this.enemyBulletYY-b)/20;else this.enemyBulletYY=this.enemyBulletYY/20;
+	}
+enemy.prototype.drawEnemyBulletDown=function(){
+	this.enemyBulletXX=this.enemyBulletX;
+	this.enemyBulletYY=this.enemyBulletY;
+	var a=this.enemyBulletX.mod(20);
+	var b=this.enemyBulletY.mod(20);
+	//flag=0;
+	this.enemyBulletFlag=0;
+	//case 40://down
+		ctx.clearRect(this.enemyBulletX,this.enemyBulletY,3,15);
+		this.enemyBulletY=this.enemyBulletY+3;
+		if(a!=0)this.enemyBulletXX=(this.enemyBulletXX-a)/20;else this.enemyBulletXX=this.enemyBulletXX/20;
+		if(b!=0)this.enemyBulletYY=(this.enemyBulletYY-b)/20;else this.enemyBulletYY=this.enemyBulletYY/20;
 
-			if(this.enemyBulletY<=579 && myImageArray[this.enemyBulletYY][this.enemyBulletXX]==0)
-				ctx.drawImage(this.enemyBullet,0,0,3,15,this.enemyBulletX,this.enemyBulletY,3,15);
-			else if(a<5){
-				clearInterval(this.enemyBulletLoop);
-				if(myImageArray[this.enemyBulletYY][this.enemyBulletXX]!=5)
-				myImageArray[this.enemyBulletYY][this.enemyBulletXX]=0;
-				if(myImageArray[this.enemyBulletYY][this.enemyBulletXX-1]!=5)
-				myImageArray[this.enemyBulletYY][this.enemyBulletXX-1]=0;
-				ctx.clearRect(this.enemyBulletXX*20,(this.enemyBulletYY)*20,20,20);
-				ctx.clearRect((this.enemyBulletXX-1)*20,(this.enemyBulletYY)*20,20,20);
-				//flag=1;
-				this.enemyBulletFlag=1;
-				//if(postSpaceBarPress!=32)
-				//preKeyPress=postSpaceBarPress;
+		if(this.enemyBulletY<=579 && myImageArray[this.enemyBulletYY][this.enemyBulletXX]==0)
+			ctx.drawImage(this.enemyBullet,0,0,3,15,this.enemyBulletX,this.enemyBulletY,3,15);
+		else if(a<5){
+			clearInterval(this.enemyBulletLoop);
+			if(myImageArray[this.enemyBulletYY][this.enemyBulletXX]!=5)
+			myImageArray[this.enemyBulletYY][this.enemyBulletXX]=0;
+			if(myImageArray[this.enemyBulletYY][this.enemyBulletXX-1]!=5)
+			myImageArray[this.enemyBulletYY][this.enemyBulletXX-1]=0;
+			ctx.clearRect(this.enemyBulletXX*20,(this.enemyBulletYY)*20,20,20);
+			ctx.clearRect((this.enemyBulletXX-1)*20,(this.enemyBulletYY)*20,20,20);
+			//flag=1;
+			this.enemyBulletFlag=1;
+			//if(postSpaceBarPress!=32)
+			//preKeyPress=postSpaceBarPress;
 
-			}
-			else if(a>20){
-				clearInterval(this.enemyBulletLoop);
-				if(myImageArray[this.enemyBulletYY][this.enemyBulletXX]!=5)
-				myImageArray[this.enemyBulletYY][this.enemyBulletXX]=0;
-				if(myImageArray[this.enemyBulletYY][this.enemyBulletXX+1]!=5)
-				myImageArray[this.enemyBulletYY][this.enemyBulletXX+1]=0;
-				ctx.clearRect(this.enemyBulletXX*20,(this.enemyBulletYY)*20,20,20);
-				ctx.clearRect((this.enemyBulletXX+1)*20,(this.enemyBulletYY)*20,20,20);
-				//flag=1;
-				this.enemyBulletFlag=1;
-				//if(postSpaceBarPress!=32)
-				//preKeyPress=postSpaceBarPress;
-			}
-			else{
-				clearInterval(this.enemyBulletLoop);
-				if(myImageArray[this.enemyBulletYY][this.enemyBulletXX]!=5)
-				myImageArray[this.enemyBulletYY][this.enemyBulletXX]=0;
-				ctx.clearRect(this.enemyBulletXX*20,(this.enemyBulletYY)*20,20,20);
-				//flag=1;
-				this.enemyBulletFlag=1;
-				//if(postSpaceBarPress!=32)
-				//preKeyPress=postSpaceBarPress;
-			}
-			//break;
 		}
-	enemy.prototype.drawEnemyBulletRight=function(){
-		this.enemyBulletXX=this.enemyBulletX;
-		this.enemyBulletYY=this.enemyBulletY;
-		var a=this.enemyBulletX.mod(20);
-		var b=this.enemyBulletY.mod(20);
-		//flag=0;
-		this.enemyBulletFlag=0;
-		//case 39://right
-			
-			
-			ctx.clearRect(this.enemyBulletX,this.enemyBulletY,15,3);
-			this.enemyBulletX=this.enemyBulletX+3;
-			if(a!=0)this.enemyBulletXX=(this.enemyBulletXX-a)/20;else this.enemyBulletXX=this.enemyBulletXX/20;
-			if(b!=0)this.enemyBulletYY=(this.enemyBulletYY-b)/20;else this.enemyBulletYY=this.enemyBulletYY/20;
-			if(this.enemyBulletX<=579 && myImageArray[this.enemyBulletYY][this.enemyBulletXX]==0)
-				ctx.drawImage(this.enemyBullet,0,0,15,3,this.enemyBulletX,this.enemyBulletY,15,3);
-			else if(b<5){
-				clearInterval(this.enemyBulletLoop);
-				if(myImageArray[this.enemyBulletYY][this.enemyBulletXX]!=5)
-				myImageArray[this.enemyBulletYY][this.enemyBulletXX]=0;
-				if(myImageArray[this.enemyBulletYY-1][this.enemyBulletXX]!=5)
-				myImageArray[this.enemyBulletYY-1][this.enemyBulletXX]=0;
-				ctx.clearRect(this.enemyBulletXX*20,(this.enemyBulletYY)*20,20,20);
-				ctx.clearRect((this.enemyBulletXX)*20,(this.enemyBulletYY-1)*20,20,20);
-				//flag=1;
-				this.enemyBulletFlag=1;
-				//if(postSpaceBarPress!=32)
-				//preKeyPress=postSpaceBarPress;
+		else if(a>20){
+			clearInterval(this.enemyBulletLoop);
+			if(myImageArray[this.enemyBulletYY][this.enemyBulletXX]!=5)
+			myImageArray[this.enemyBulletYY][this.enemyBulletXX]=0;
+			if(myImageArray[this.enemyBulletYY][this.enemyBulletXX+1]!=5)
+			myImageArray[this.enemyBulletYY][this.enemyBulletXX+1]=0;
+			ctx.clearRect(this.enemyBulletXX*20,(this.enemyBulletYY)*20,20,20);
+			ctx.clearRect((this.enemyBulletXX+1)*20,(this.enemyBulletYY)*20,20,20);
+			//flag=1;
+			this.enemyBulletFlag=1;
+			//if(postSpaceBarPress!=32)
+			//preKeyPress=postSpaceBarPress;
+		}
+		else{
+			clearInterval(this.enemyBulletLoop);
+			if(myImageArray[this.enemyBulletYY][this.enemyBulletXX]!=5)
+			myImageArray[this.enemyBulletYY][this.enemyBulletXX]=0;
+			ctx.clearRect(this.enemyBulletXX*20,(this.enemyBulletYY)*20,20,20);
+			//flag=1;
+			this.enemyBulletFlag=1;
+			//if(postSpaceBarPress!=32)
+			//preKeyPress=postSpaceBarPress;
+		}
+		//break;
+	}
+enemy.prototype.drawEnemyBulletRight=function(){
+	this.enemyBulletXX=this.enemyBulletX;
+	this.enemyBulletYY=this.enemyBulletY;
+	var a=this.enemyBulletX.mod(20);
+	var b=this.enemyBulletY.mod(20);
+	//flag=0;
+	this.enemyBulletFlag=0;
+	//case 39://right
+		
+		
+		ctx.clearRect(this.enemyBulletX,this.enemyBulletY,15,3);
+		this.enemyBulletX=this.enemyBulletX+3;
+		if(a!=0)this.enemyBulletXX=(this.enemyBulletXX-a)/20;else this.enemyBulletXX=this.enemyBulletXX/20;
+		if(b!=0)this.enemyBulletYY=(this.enemyBulletYY-b)/20;else this.enemyBulletYY=this.enemyBulletYY/20;
+		if(this.enemyBulletX<=579 && myImageArray[this.enemyBulletYY][this.enemyBulletXX]==0)
+			ctx.drawImage(this.enemyBullet,0,0,15,3,this.enemyBulletX,this.enemyBulletY,15,3);
+		else if(b<5){
+			clearInterval(this.enemyBulletLoop);
+			if(myImageArray[this.enemyBulletYY][this.enemyBulletXX]!=5)
+			myImageArray[this.enemyBulletYY][this.enemyBulletXX]=0;
+			if(myImageArray[this.enemyBulletYY-1][this.enemyBulletXX]!=5)
+			myImageArray[this.enemyBulletYY-1][this.enemyBulletXX]=0;
+			ctx.clearRect(this.enemyBulletXX*20,(this.enemyBulletYY)*20,20,20);
+			ctx.clearRect((this.enemyBulletXX)*20,(this.enemyBulletYY-1)*20,20,20);
+			//flag=1;
+			this.enemyBulletFlag=1;
+			//if(postSpaceBarPress!=32)
+			//preKeyPress=postSpaceBarPress;
 
-			}
-			else if(b>20){
-				clearInterval(this.enemyBulletLoop);
-				if(myImageArray[this.enemyBulletYY+1][this.enemyBulletXX]!=5)
-				myImageArray[this.enemyBulletYY+1][this.enemyBulletXX]=0;
-				if(myImageArray[this.enemyBulletYY][this.enemyBulletXX]!=5)
-				myImageArray[this.enemyBulletYY][this.enemyBulletXX]=0;
-				ctx.clearRect(this.enemyBulletXX*20,(this.enemyBulletYY)*20,20,20);
-				ctx.clearRect((this.enemyBulletXX)*20,(this.enemyBulletYY+1)*20,20,20);
-				//flag=1;
-				this.enemyBulletFlag=1;
-				//if(postSpaceBarPress!=32)
-				//preKeyPress=postSpaceBarPress;
-			}
-			else{
-				clearInterval(this.enemyBulletLoop);
-				if(myImageArray[this.enemyBulletYY][this.enemyBulletXX]!=5)
-				myImageArray[this.enemyBulletYY][this.enemyBulletXX]=0;
-				ctx.clearRect(this.enemyBulletXX*20,this.enemyBulletYY*20,20,20);
-				//flag=1;	
-				this.enemyBulletFlag=1;
-				//if(postSpaceBarPress!=32)
-				//preKeyPress=postSpaceBarPress;
-			}		
-			//break;
 		}
-	enemy.prototype.drawEnemyBulletLeft=function(){
+		else if(b>20){
+			clearInterval(this.enemyBulletLoop);
+			if(myImageArray[this.enemyBulletYY+1][this.enemyBulletXX]!=5)
+			myImageArray[this.enemyBulletYY+1][this.enemyBulletXX]=0;
+			if(myImageArray[this.enemyBulletYY][this.enemyBulletXX]!=5)
+			myImageArray[this.enemyBulletYY][this.enemyBulletXX]=0;
+			ctx.clearRect(this.enemyBulletXX*20,(this.enemyBulletYY)*20,20,20);
+			ctx.clearRect((this.enemyBulletXX)*20,(this.enemyBulletYY+1)*20,20,20);
+			//flag=1;
+			this.enemyBulletFlag=1;
+			//if(postSpaceBarPress!=32)
+			//preKeyPress=postSpaceBarPress;
+		}
+		else{
+			clearInterval(this.enemyBulletLoop);
+			if(myImageArray[this.enemyBulletYY][this.enemyBulletXX]!=5)
+			myImageArray[this.enemyBulletYY][this.enemyBulletXX]=0;
+			ctx.clearRect(this.enemyBulletXX*20,this.enemyBulletYY*20,20,20);
+			//flag=1;	
+			this.enemyBulletFlag=1;
+			//if(postSpaceBarPress!=32)
+			//preKeyPress=postSpaceBarPress;
+		}		
+		//break;
+	}
+enemy.prototype.drawEnemyBulletLeft=function(){
 		this.enemyBulletXX=this.enemyBulletX;
 		this.enemyBulletYY=this.enemyBulletY;
 		var a=this.enemyBulletX.mod(20);
