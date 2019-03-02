@@ -5,5 +5,3 @@ An attempt to develop a game which I used to play in my childhood in the process
 
 Basic functionalities like creating the battle field, moving tanks, firing bullets one at a time, two players, sample enemy tanks, 
 destroying objects with bullets are implemented.
-
-Need lot of changes. 
